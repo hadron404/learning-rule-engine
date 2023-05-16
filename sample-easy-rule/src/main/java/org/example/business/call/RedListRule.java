@@ -6,22 +6,22 @@ import org.jeasy.rules.annotation.*;
 public class RedListRule {
 
 
-    @Condition
-    public boolean when(@Fact("customer") Customer fact) {
-        //my rule conditions
-        return "红名单".equals(fact.getType());
-    }
+	@Condition
+	public boolean when(@Fact("customer") Customer fact) {
+		//my rule conditions
+		return "红名单".equals(fact.getType());
+	}
 
-    @Action(order = 1)
-    public void then(@Fact("customer") Customer fact) throws Exception {
-        //my actions
-        // fact.setCallStrategy("不允许转人工，生成红名单任务");
-        fact.setCallStrategy("2");
-    }
+	@Action(order = 1)
+	public void then(@Fact("customer") Customer fact) throws Exception {
+		//my actions
+		// fact.setCallStrategy("不允许转人工，生成红名单任务");
+		fact.setCallStrategy("2");
+	}
 
-    @Priority
-    public int getPriority() {
-        return 2;
-    }
+	@Priority
+	public int getPriority() {
+		return 2;
+	}
 
 }
