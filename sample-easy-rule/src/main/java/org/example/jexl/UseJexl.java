@@ -1,4 +1,4 @@
-package org.example;
+package org.example.jexl;
 
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rule;

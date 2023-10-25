@@ -1,7 +1,10 @@
 package org.example;
 
+import org.example.jexl.UseJexl;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+		UseJexl useJexlSample = new UseJexl();
+		useJexlSample.test();
     }
 }

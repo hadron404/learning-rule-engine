@@ -1,0 +1,5 @@
+https://blog.csdn.net/weixin_43830468/article/details/125424422[apache commons-jexl 公式中运用（自定义函数、公式之间]相互调用）
+
+https://commons.apache.org/proper/commons-jexl/mail-lists.html[Apache JEXL]
+
+https://juejin.cn/post/6844904100279091208[JEXL 常见示例]
