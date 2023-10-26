@@ -1,7 +1,8 @@
 package org.example;
 
-import org.apache.commons.jexl3.*;
-import org.example.jexl.func.UnknownName1;
+import org.apache.commons.jexl3.JexlBuilder;
+import org.apache.commons.jexl3.JexlEngine;
+import org.example.jexl.func.diyFunctions;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rule;
 import org.jeasy.rules.api.Rules;
@@ -103,25 +104,19 @@ class UseJexlTest {
 	}
 
 	@Test
-	void array_string_contains2() {
+	void array_nonDisjoint() {
 		JexlBuilder jexlBuilder = new JexlBuilder();
 		// 2、用户自定义函数（调用方式--》函数名:方法名）
 		Map<String, Object> func = new LinkedHashMap<>();
-		func.put("fn_u1", new UnknownName1<>());
+		func.put("fn", new diyFunctions());
 		jexlBuilder.namespaces(func);
 		JexlEngine jexl = jexlBuilder.create();
-		JexlExpression e = jexl.createExpression("fn_u1:exec(lhs,'a','b','c')");
-		JexlContext jc = new MapContext();
-		jc.set("lhs", List.of("f", "v", "c"));
-		boolean o = (Boolean) e.evaluate(jc);
-		// Assertions.assertTrue(o);
-
 		Rule rule = new JexlRule(jexl)
 			.name("myRule")
 			.description("myRuleDescription")
 			.priority(3)
 			// 属于数组中的任意一个
-			.when("fn_u1:exec(lhs,'a','b','c')");
+			.when("fn:nonDisjoint(lhs,'a','b','c')");
 		rules.register(rule);
 		facts.put("lhs", List.of("f", "v", "c"));
 		rulesEngine.check(rules, facts);
