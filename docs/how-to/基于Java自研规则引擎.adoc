@@ -1,0 +1,19 @@
+
+
+
+素材
+
+https://tech.meituan.com/2017/06/09/maze-framework.html[从0到1：构建强大且易用的规则引擎 - 美团技术团队]
+
+https://blog.csdn.net/qq_30615201/article/details/111318623[规则引擎的架构设计与系统实现]
+
+*  介绍市面上主流的规则引擎以及如何进行自研规则引擎的架构设计及实现
+
+https://doctording.blog.csdn.net/article/details/130899698[理解Easy-Rule的设计]
+
+== 自研规则引擎实践
+
+* https://blog.csdn.net/qq_26437925/category_10941346.html[规则引擎相关的各类知识和实际工作中的相关设计]
+* https://blog.csdn.net/qq_26437925/article/details/131352949[规则集：规则集合的组织和执行]
+* https://doctording.blog.csdn.net/article/details/131339489[规则逻辑形如“1 & (2 | 3)“的抽象设计]
+* https://doctording.blog.csdn.net/article/details/131348032[函数式编程和and/or操作符的设计]
