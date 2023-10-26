@@ -1,8 +1,6 @@
-https://tech.meituan.com/2017/06/09/maze-framework.html[从0到1：构建强大且易用的规则引擎 - 美团技术团队]
 
-https://blog.csdn.net/qq_26437925/category_10941346.html[规则引擎相关的各类知识和实际工作中的相关设计]
 
 
 https://www.zhihu.com/question/43360471/answer/3105896596[开源企业级规则引擎]
 
-https://blog.csdn.net/qq_30615201/article/details/111318623[规则引擎的架构设计与系统实现]
+

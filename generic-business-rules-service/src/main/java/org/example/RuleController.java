@@ -1,6 +1,5 @@
 package org.example;
 
-import org.apache.commons.jexl3.JexlException;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rule;
 import org.jeasy.rules.api.Rules;
