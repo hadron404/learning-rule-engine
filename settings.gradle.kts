@@ -10,4 +10,4 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-
+include("self-study-rule-engine")
