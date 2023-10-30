@@ -1,0 +1,22 @@
+= 规则引擎架构设计
+
+
+== 组成
+
+* 规则数据模型
+
+
+== 数据模型
+
+* Fact
+* Rule
+* Action
+
+
+https://mp.weixin.qq.com/s?__biz=MzI4MTY4NDY3Nw==&mid=2247483856&idx=1&sn=471630938f8f06c4ddad049b86101780&chksm=eba43e7adcd3b76cff9fc7148979642a66eda24e47c3ee1eb33322cfc5ae399fc43b0279d28d&scene=21#wechat_redirect[逆波兰算法在规则引擎中的应用]
+
+https://blog.csdn.net/u010020726/article/details/126405515[规则引擎基础知识]
+
+https://www.martinfowler.com/books/dsl.html[Domain Specific Languages]
+
+* Chapter 50 Production Rule System

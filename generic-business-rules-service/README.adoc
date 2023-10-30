@@ -81,7 +81,7 @@ exclude_客户标签
 升级类型
 订单应收金额区间
 
-https://tech.youzan.com/rule-config-platform/
+https://tech.youzan.com/rule-config-platform/[通用规则平台的设计与应用]
 
 
 
