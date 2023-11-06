@@ -1,8 +1,3 @@
-rootProject.name = "learning-rule-engine"
-include("sample-easy-rule")
-include("generic-business-rules-service")
-
-
 pluginManagement {
     repositories {
         maven { url = uri("https://repo.spring.io/milestone") }
@@ -10,4 +5,9 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
+rootProject.name = "learning-rule-engine"
+include("sample-easy-rule")
+include("generic-business-rules-service")
 include("self-study-rule-engine")
+include("scenarios:business")
