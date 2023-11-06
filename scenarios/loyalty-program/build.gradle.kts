@@ -10,8 +10,8 @@ apply(plugin = "io.spring.dependency-management")
 
 dependencies {
 
-    implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("org.springframework.experimental:spring-modulith-starter-api")
+    implementation("org.springframework.experimental:spring-modulith-starter-test")
 
     tasks.getByName<Test>("test") {
         useJUnitPlatform()

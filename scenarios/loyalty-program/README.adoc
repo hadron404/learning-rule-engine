@@ -1,0 +1,21 @@
+= Customer Loyalty Program
+
+
+
+== 参考资料
+
+* https://www.investopedia.com/terms/l/loyalty-program.asp[Loyalty Program]
+* https://peertopeermarketing.co/loyalty-software/[8 Best Customer Loyalty Program Software and Apps to Increase Customer Retention in 2023]
+* https://blog.hubspot.com/service/customer-loyalty-program[The Beginner's Guide to Building a Customer Loyalty Program]
+
+=== https://www.voucherify.io/blog/architecture-of-customer-loyalty-software-a-guide-for-product-managers[How to Design Customer Loyalty Software?]
+
+** What are the must-haves of an effective loyalty program software architecture?
+** How to implement a loyalty software within your technology stack?
+Should I build or buy customer loyalty software?
+** How to estimate the amount of work needed to build a loyalty platform?
+** What are the features I should include in my loyalty platform?
+** What are the requirements I should look at when choosing a loyalty provider?
+** What are some obstacles on the road to designing and implementing a customer loyalty program?
+
+=== https://blog.griddynamics.com/building-modern-customer-loyalty-engine/[How-to Guide: Building a Modern Customer Loyalty Engine]

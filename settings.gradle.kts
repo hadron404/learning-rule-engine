@@ -10,4 +10,4 @@ rootProject.name = "learning-rule-engine"
 include("sample-easy-rule")
 include("generic-business-rules-service")
 include("self-study-rule-engine")
-include("scenarios:business")
+include("scenarios:loyalty-program")
