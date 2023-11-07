@@ -1,0 +1,18 @@
+
+
+https://www.infoq.cn/article/F3I9jfBsZ4cyE2aD7K8U[Spring Modulith 使用模块和事件组织 Spring Boot 3 应用]
+
+* InfoQ 对 Spring Modulith 项目负责人 Oliver Drotbohm 的采访
+* 微服务解决了单体的组织问题，比如各部门无法以相同的节奏发布。它们也有技术方面的优势，比如能够独立扩展应用的不同组成部分以及使用不同的技术栈。当初你们为何决定改进单体？现在的原因又是什么
+* 在只有一个模块的应用中，Spring Modulith 有什么样的作用呢？
+* 现在有一些即存的结构化单体，比如领域驱动设计（DDD）或者六边形（Hexagonal）架构。似乎 Spring Modulith 创造了一种新的方式，为什么要这样做呢？
+* 在 Java 9 中，Java Platform Module System（JPMS）的目标是为 Java 提供“可靠的配置”和“强封装性”。JPMS 为何没有满足你们对模块的要求呢？
+* Spring Modulith 中的模块与 DDD 中的限界上下文有何异同？
+* 在 Spring Modulith 中，模块会向其他模块暴露 API。但是，它们之间也可以通过所谓的“应用事件”来进行交互，文档中将其建议为“主要的交互方式”。Spring Modulith 为何更推荐使用事件？
+* 其他框架都有不同程度的代码生成功能。例如，Angular 有可定制的 schematics 来生成少量的代码，如模块或组件。在 Spring Modulith 中，有代码生成相关的计划吗？
+* 如何将现有的 Spring Boot 3 项目迁移到 Spring Modulith？
+* Spring Modulith 是一个实验性项目。在生产中使用它的安全性如何？
+* Spring Modulith 未来的计划是什么呢？
+
+
+https://springdoc.cn/spring-modulith-intro/[Spring Modulith 简介]
