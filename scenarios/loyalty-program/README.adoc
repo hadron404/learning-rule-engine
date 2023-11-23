@@ -8,16 +8,6 @@
 
 === Functional Requirement & Non-functional Requirement
 
-https://www.openloyalty.io/product/loyalty-points-system[Open Loyalty - loyalty-points-system]
-
-* Transactional earning rules
-* Behavioral earning rules
-* Points liability management
-* Points limitations
-* Various redemption mechanics
-
-
-
 == Implementation
 
 === Technology Stack

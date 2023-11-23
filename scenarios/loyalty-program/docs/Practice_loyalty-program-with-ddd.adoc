@@ -1,0 +1,6 @@
+
+
+
+
+它是 loyalty program 中的一部分，
+核心概念为 Point，它表示客户（customer）在使用该系统的过程中，通过触发一系列交易（transaction）或者行为（behavior），从而客户可以获得相应的 points，在 point 的有效期内，可以兑换（redemption）该系统所定义的rewards，例如商品

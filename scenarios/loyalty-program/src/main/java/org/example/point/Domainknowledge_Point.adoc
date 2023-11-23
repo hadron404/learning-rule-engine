@@ -1,0 +1,46 @@
+= Point-Based Reward System
+
+== Points Earning 积分收入
+
+* Transactional Earning Rule: *Introduce reward point campaigns based on your chose transaction attributes.*
+* Behavioral Earning Rule: *Build a points-based loyalty program that reward customers for specific behaviors.*
+
+=== Transactional Earning Rule 交易收入规则
+
+Using transactional earning rule to define how many points can be earned based on transaction attributes,such as shopping in person or via your online store.Combine rules with time, segment, location,and more.
+定义了基于交易属性例如个人购物或通过在线商城可以获得多少点数，在时间、分段、位置等与规则相结合。 Work with predefined rules or add custom ones to engage customers and increase customer lifetime value among loyalty members.
+
+=== Behavior Earning Rule 行为收入规则
+
+Reward loyal customers with behavioural earning rules,based on actions they have taken.Encourage customers to perform actions such as referring new customers,subscribing to your newsletter,making repeat purchase,and much more.
+
+Configure custom events and give points for any you want.
+
+== Points liability management 积分责任管理
+
+*Manage point transfers in your loyalty program manually or automatically.*
+
+Monitor every point transfer in your loyalty program, including earning and spending points.Configure digital wallets for storing points and stay up to date with the extended points liability management module.
+
+== Points Limitation
+
+*Define earning rules and limits to secure your loyalty program against fraud.*
+
+Ensure you keep your budget in check and stay one step ahead of fraudsters.
+With the campaign limitations features, you can set limits for the total number of rewards points that can be earned.
+Decide on the number of available points per campaign and member.
+
+== Points Redemption 积分兑换
+
+*Allow members to spend their loyalty points in many ways.*
+
+Design the most effective redemption mechanics for your business.
+Let customers use their points to redeem loyalty program rewards, coupons or turn them into a payment method.
+
+https://www.openloyalty.io/product/loyalty-points-system[Open Loyalty - loyalty-points-system]
+
+* Transactional earning rules
+* Behavioral earning rules
+* Points liability management
+* Points limitations
+* Various redemption mechanics

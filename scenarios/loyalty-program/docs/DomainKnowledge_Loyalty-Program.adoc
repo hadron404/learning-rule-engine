@@ -27,3 +27,7 @@ Should I build or buy customer loyalty software?
 
 ==== 积分体系
 * https://www.zhihu.com/question/19760734【积分体系如何规划 | 知乎】
+
+=== Liability Management
+* https://www.investopedia.com/terms/l/liability-management.asp[Liability Management:Definition,Strategies,Importance ]
+
