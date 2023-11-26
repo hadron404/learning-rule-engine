@@ -1,6 +1,22 @@
 
+== Ubiquitous Language
+=== point-based loyalty program
 
+它是 loyalty program 中的一部分。
+它与外部交易系统进行交互，作为交易系统的下游，系统通过外部用户界面系统，所有外部系统集成通过aip-first进行集成
+点数获取模块(point earning management)
+运营人员（operation）可以通过建立基于交易（transaction）或基于行为（behavior）的获取（earning）点数（point） 规则（rule）。
+运营人员可以查询或筛选所有已建立的规则，进行相关操作。
+客户（customer）通过外部交易系统触发交易事件以挣得point。根据不同的获得规则获得的点数具有有效期（expiration）。
+客户通过触发行为事件（比如客户的tier从银卡变成了金卡）以挣得point。
 
+点数责任管理模块(point liability management)
+运营人员可以查询每个客户的点数转移
+客户可查看到自己的点数余额（point balance），可查看到自己的点数转移流水
 
-它是 loyalty program 中的一部分，
-核心概念为 Point，它表示客户（customer）在使用该系统的过程中，通过触发一系列交易（transaction）或者行为（behavior），从而客户可以获得相应的 points，在 point 的有效期内，可以兑换（redemption）该系统所定义的rewards，例如商品
+点数兑换机制(point redemption mechanics)
+
+运营人员建立多种多样的奖品（reward）以及相应的点数兑换（redemption）条件
+客户通过花费点数来兑换各种各样的奖品
+如何与外部系统建立通用的兑换机制
+
