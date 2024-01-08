@@ -1,6 +1,5 @@
 package org.example.services;
 
-import org.example.AbstractRuleLoader;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rule;
 import org.jeasy.rules.api.Rules;
@@ -21,6 +20,9 @@ public class DefaultRulesEngine {
 
 	public Map<Rule, Boolean> checkOne(String name, Map<String, Object> context) {
 		Rules rules = new Rules();
+		if (RULE_CACHE.get(name) == null) {
+			throw new UnknownRuleException(name);
+		}
 		rules.register(RULE_CACHE.get(name));
 		Facts facts = new Facts();
 		context.forEach(facts::put);
@@ -33,6 +35,10 @@ public class DefaultRulesEngine {
 		Facts facts = new Facts();
 		context.forEach(facts::put);
 		return DEFAULT_RULES_ENGINE.check(rules, facts);
+	}
+
+	public static int getRuleCacheSize() {
+		return RULE_CACHE.size();
 	}
 
 }

@@ -1,0 +1,32 @@
+### 使用数字规则
+GET {{prefix}}{{ip}}:{{port}}/rule/数字规则1?c=3
+
+
+### 使用布尔规则
+GET {{prefix}}{{ip}}:{{port}}/rule/布尔规则2?c=true
+
+
+### 使用字符规则
+GET {{prefix}}{{ip}}:{{port}}/rule/字符规则3?c=某某某
+
+
+### 使用自定义规则
+GET {{prefix}}{{ip}}:{{port}}/rule/自定义规则4?c=39
+
+### 使用自定义规则
+GET {{prefix}}{{ip}}:{{port}}/rule/自定义规则5?c=abs
+
+# todo 使用get请求以及map来接收通用的参数（数字、字符串、集合等类型）
+### 使用集合规则
+GET {{prefix}}{{ip}}:{{port}}/rule/规则3?c=1,2
+
+### 使用集合规则
+GET {{prefix}}{{ip}}:{{port}}/rule/规则3?c=1&c=2
+
+
+### 使用集合规则
+GET {{prefix}}{{ip}}:{{port}}/rule/规则4?c[0]=1&c[1]=2
+
+
+### 使用集合规则
+GET {{prefix}}{{ip}}:{{port}}/rule/规则4?c=[1,2]

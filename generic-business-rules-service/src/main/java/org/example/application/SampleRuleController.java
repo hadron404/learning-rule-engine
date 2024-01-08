@@ -1,5 +1,6 @@
-package org.example.sample1;
+package org.example.application;
 
+import org.example.domain.model.rule.Rules;
 import org.example.services.DefaultRulesEngine;
 import org.jeasy.rules.api.Rule;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
  */
 @RestController()
 @RequestMapping("/rule/sample")
-public class SampleRuleController {
+class SampleRuleController {
 	private final DefaultRulesEngine defaultRulesEngine;
 
 	public SampleRuleController(DefaultRulesEngine defaultRulesEngine) {

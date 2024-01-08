@@ -1,5 +1,7 @@
-package org.example;
+package org.example.application;
 
+import org.example.services.AbstractRuleLoader;
+import org.example.services.DefaultRulesEngine;
 import org.jeasy.rules.api.Rule;
 import org.jeasy.rules.jexl.JexlRule;
 import org.springframework.http.MediaType;
@@ -14,8 +16,8 @@ import java.util.Map;
  * 临时规则加载器
  */
 @RestController()
-@RequestMapping("/rule/loader/temp")
-public class TemporaryRuleController {
+@RequestMapping("/temp/rule")
+class TemporaryRuleController {
 	/**
 	 * 添加一个临时规则加入到正在运行的应用服务
 	 * 直到应用服务关闭，所有添加的临时规则就会消失
@@ -28,7 +30,7 @@ public class TemporaryRuleController {
 		Rule rule = new JexlRule()
 			.name(name)
 			.description(desc)
-			.priority(3)
+			.priority(DefaultRulesEngine.getRuleCacheSize())
 			.when(condition);
 		AbstractRuleLoader.load(rule);
 	}

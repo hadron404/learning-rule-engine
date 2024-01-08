@@ -1,4 +1,4 @@
-package org.example;
+package org.example.application;
 
 import org.example.services.DefaultRulesEngine;
 import org.jeasy.rules.api.Rule;
@@ -8,7 +8,7 @@ import java.util.Map;
 
 @RestController()
 @RequestMapping("/rule")
-public class RuleController {
+class RuleController {
 
 	private final DefaultRulesEngine defaultRulesEngine;
 

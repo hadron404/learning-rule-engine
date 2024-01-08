@@ -1,0 +1,66 @@
+# 临时规则
+
+### 创建一个数字规则
+POST {{prefix}}{{ip}}:{{port}}/temp/rule
+Content-Type: application/json
+
+{
+  "name": "数字规则1",
+  "desc": "依据数字比较的规则",
+  "condition": "c == 3"
+}
+
+
+### 创建一个布尔规则
+POST {{prefix}}{{ip}}:{{port}}/temp/rule
+Content-Type: application/json
+
+{
+  "name": "布尔规则2",
+  "desc": "依据布尔比较的规则",
+  "condition": "c == true"
+}
+
+
+### 创建一个字符规则
+POST {{prefix}}{{ip}}:{{port}}/temp/rule
+Content-Type: application/json
+
+{
+  "name": "字符规则3",
+  "desc": "依据字符比较的规则",
+  "condition": "c == '某某某'"
+}
+
+
+### 创建一个自定义函数规则
+POST {{prefix}}{{ip}}:{{port}}/temp/rule
+Content-Type: application/json
+
+{
+  "name": "自定义规则4",
+  "desc": "依据系统已有自定义规则的",
+  "condition": "c =~ ['39','40','41','42','43','44']"
+}
+
+
+### 创建一个自定义函数规则
+POST {{prefix}}{{ip}}:{{port}}/temp/rule
+Content-Type: application/json
+
+{
+  "name": "自定义规则5",
+  "desc": "依据系统已有自定义规则的",
+  "condition": "c =~ ['abs','b','a']"
+}
+
+
+### 创建一个复杂业务规则
+POST {{prefix}}{{ip}}:{{port}}/temp/rule
+Content-Type: application/json
+
+{
+  "name": "业务规则1",
+  "desc": "订单中可下政策的限制规则",
+  "condition": "department =~ ['1','2','3','4'] and workAge >= 0 and workAge <= 10  and customerLevel =~ ['39','40','41','42','43','44'] "
+}

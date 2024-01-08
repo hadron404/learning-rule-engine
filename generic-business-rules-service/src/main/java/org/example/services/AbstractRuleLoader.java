@@ -1,9 +1,12 @@
-package org.example;
+package org.example.services;
 
+import jakarta.annotation.PostConstruct;
 import org.jeasy.rules.api.Rule;
+import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
+
 
 public abstract class AbstractRuleLoader {
 
@@ -12,4 +15,9 @@ public abstract class AbstractRuleLoader {
 		RULE_CACHE.put(arule.getName(), arule);
 	}
 	public abstract void load();
+
+	@PostConstruct
+	private void init() {
+		this.load();
+	}
 }
