@@ -3,10 +3,14 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/bu_rule?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
     username: root
-    password: root
+    password: 123456
   jpa:
     database: MySQL
     database-platform: org.hibernate.dialect.MySQLDialect
     show-sql: true
-    hibernate:
-      ddl-auto: update
+#  spring 应用的数据库表初始化
+#  sql:
+#    init:
+#      mode: always
+#      data-locations: classpath:mysql/data-*.sql
+#      schema-locations: classpath:mysql/schema-*.sql
