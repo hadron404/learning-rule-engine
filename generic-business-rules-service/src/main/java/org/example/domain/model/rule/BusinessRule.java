@@ -7,10 +7,7 @@ import org.jeasy.rules.jexl.JexlRule;
 import java.util.Set;
 
 /**
- *
  * 业务规则领域模型
- * todo 通过jpa进行数据映射
- *
  */
 public class BusinessRule {
 
