@@ -19,8 +19,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
 
     implementation("org.jeasy:easy-rules-core:4.1.0")
-    implementation("org.jeasy:easy-rules-jexl:4.1.0")
-
+    implementation("org.jeasy:easy-rules-jexl:4.1.0") {
+        exclude("commons-logging", "commons-logging")
+    }
     tasks.getByName<Test>("test") {
         useJUnitPlatform()
     }
