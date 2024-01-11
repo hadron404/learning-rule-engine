@@ -1,7 +1,7 @@
 package org.example.domain.model.rule;
 
 import org.example.common.func.Functions;
-import org.example.domain.model.RuleFactory;
+import org.example.port.adapter.factory.RuleFactory;
 import org.jeasy.rules.jexl.JexlRule;
 
 import java.util.Set;

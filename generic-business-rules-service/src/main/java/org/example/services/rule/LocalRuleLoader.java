@@ -1,7 +1,7 @@
 package org.example.services.rule;
 
-import org.example.domain.model.RuleFactory;
-import org.example.domain.model.rule.Rules;
+import org.example.port.adapter.factory.RuleFactory;
+import org.example.port.adapter.factory.Rules;
 import org.example.services.AbstractRuleLoader;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package org.example.domain.model.rule;
+package org.example.port.adapter.factory;
 
 
 import org.example.common.func.Functions;

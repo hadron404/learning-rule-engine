@@ -1,10 +1,9 @@
-package org.example.domain.model;
+package org.example.port.adapter.factory;
 
 import org.apache.commons.jexl3.JexlBuilder;
 import org.apache.commons.jexl3.JexlEngine;
 import org.example.common.func.Functions;
 import org.example.domain.model.rule.BusinessRule;
-import org.example.domain.model.rule.Rules;
 import org.jeasy.rules.jexl.JexlRule;
 
 import java.util.LinkedHashMap;
