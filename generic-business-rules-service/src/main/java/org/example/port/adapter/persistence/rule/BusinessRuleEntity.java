@@ -3,7 +3,7 @@ package org.example.port.adapter.persistence.rule;
 
 import jakarta.persistence.*;
 
-@Entity
+@Entity(name = "business_rule")
 class BusinessRuleEntity {
 
 	@Id

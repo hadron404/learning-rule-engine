@@ -13,6 +13,9 @@ class LocalRuleLoader extends AbstractRuleLoader {
 
 	@Override
 	public void load() {
-		AbstractRuleLoader.load(RuleFactory.of(Rules.RULE_1));
+		for (Rules rule : Rules.values()) {
+			AbstractRuleLoader.load(RuleFactory.of(rule));
+		}
+		System.out.printf("从应用枚举里初始化%s条规则%n", Rules.values().length);
 	}
 }
