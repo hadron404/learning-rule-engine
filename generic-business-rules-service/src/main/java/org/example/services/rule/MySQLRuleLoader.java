@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 /**
  * 从MySQL中加载规则
  */
-//@Component
+@Component
 class MySQLRuleLoader extends AbstractRuleLoader {
 
 	private final BusinessRuleRepository businessRuleRepository;

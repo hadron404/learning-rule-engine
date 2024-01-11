@@ -1,10 +1,10 @@
-package org.example.domain.entity;
+package org.example.port.adapter.persistence.rule;
 
 
 import jakarta.persistence.*;
 
 @Entity
-class BusinessRule {
+class BusinessRuleEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

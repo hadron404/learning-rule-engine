@@ -41,4 +41,32 @@ public class BusinessRule {
 	public int priority() {
 		return this.priority;
 	}
+
+	public String warning() {
+		return warning;
+	}
+
+	public void setName(BusinessRuleId name) {
+		this.name = name;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+
+	public void setFunctions(Set<Functions> functions) {
+		this.functions = functions;
+	}
+
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
+
+	public void setWarning(String warning) {
+		this.warning = warning;
+	}
 }
