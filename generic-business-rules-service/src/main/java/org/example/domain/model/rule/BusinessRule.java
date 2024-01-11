@@ -69,4 +69,8 @@ public class BusinessRule {
 	public void setWarning(String warning) {
 		this.warning = warning;
 	}
+
+	public void publishNewCacheRuleEvent() {
+
+	}
 }

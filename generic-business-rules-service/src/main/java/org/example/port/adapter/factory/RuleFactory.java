@@ -4,6 +4,7 @@ import org.apache.commons.jexl3.JexlBuilder;
 import org.apache.commons.jexl3.JexlEngine;
 import org.example.common.func.Functions;
 import org.example.domain.model.rule.BusinessRule;
+import org.jeasy.rules.api.Rule;
 import org.jeasy.rules.jexl.JexlRule;
 
 import java.util.LinkedHashMap;
@@ -18,10 +19,8 @@ public class RuleFactory {
 			aRule.priority(), aRule.condition());
 	}
 
-	public static JexlRule of(Rules aRule) {
-		return RuleFactory.getRule(
-			aRule.functions(), aRule.name(), aRule.description(),
-			aRule.priority(), aRule.condition());
+	public static BusinessRule of(Rule rule) {
+		return new BusinessRule();
 	}
 
 	private static JexlRule getRule(

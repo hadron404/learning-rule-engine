@@ -1,6 +1,7 @@
 package org.example.application;
 
-import org.example.port.adapter.factory.Rules;
+import org.example.domain.model.rule.BusinessRule;
+import org.example.port.adapter.factory.RuleFactory;
 import org.example.services.DefaultRulesEngine;
 import org.jeasy.rules.api.Rule;
 import org.springframework.web.bind.annotation.*;
@@ -33,8 +34,8 @@ class SampleRuleController {
 			.filter(Map.Entry::getValue)
 			.map(Map.Entry::getKey)
 			.filter(i -> i.getName().equals(name))
-			.map(i -> Rules.valueOf(i.getName()))
-			.map(Rules::warning)
+			.map(RuleFactory::of)
+			.map(BusinessRule::warning)
 			.limit(1)
 			.collect(Collectors.joining(""));
 	}

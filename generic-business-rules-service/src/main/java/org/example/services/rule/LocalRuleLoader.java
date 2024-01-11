@@ -1,7 +1,6 @@
 package org.example.services.rule;
 
 import org.example.port.adapter.factory.RuleFactory;
-import org.example.port.adapter.factory.Rules;
 import org.example.services.AbstractRuleLoader;
 import org.springframework.stereotype.Component;
 
@@ -13,9 +12,9 @@ class LocalRuleLoader extends AbstractRuleLoader {
 
 	@Override
 	public void load() {
-		for (Rules rule : Rules.values()) {
-			AbstractRuleLoader.load(RuleFactory.of(rule));
+		for (LocalRules localRule : LocalRules.values()) {
+			AbstractRuleLoader.load(RuleFactory.of(localRule.businessRule()));
 		}
-		System.out.printf("从应用枚举里初始化%s条规则%n", Rules.values().length);
+		System.out.printf("从应用枚举里初始化%s条规则%n", LocalRules.values().length);
 	}
 }
