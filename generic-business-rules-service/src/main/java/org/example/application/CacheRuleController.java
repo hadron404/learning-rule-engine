@@ -25,6 +25,6 @@ class CacheRuleController {
 		String desc = param.get("desc");
 		String condition = param.get("condition");
 		BusinessRule rule = new BusinessRule();
-		rule.publishNewCacheRuleEvent();
+		rule.publishNewCachedRuleEvent();
 	}
 }

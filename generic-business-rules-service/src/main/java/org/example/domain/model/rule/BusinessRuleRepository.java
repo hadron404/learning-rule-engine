@@ -9,4 +9,6 @@ public interface BusinessRuleRepository {
 
 
 	List<BusinessRule> findAllRules();
+
+	void save(BusinessRule businessRule);
 }

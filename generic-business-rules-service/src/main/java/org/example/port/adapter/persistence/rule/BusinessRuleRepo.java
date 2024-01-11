@@ -18,6 +18,10 @@ public class BusinessRuleRepo implements BusinessRuleRepository {
 	@Override
 	public List<BusinessRule> findAllRules() {
 		return BusinessRuleFactory.entitiesToDomainModels(businessRuleJPARepository.findAll()).toList();
+	}
 
+	@Override
+	public void save(BusinessRule businessRule) {
+		businessRuleJPARepository.save(BusinessEntityFactory.domainModelToEntity(businessRule));
 	}
 }

@@ -70,7 +70,13 @@ public class BusinessRule {
 		this.warning = warning;
 	}
 
-	public void publishNewCacheRuleEvent() {
+	//  规则已缓存事件（应用关闭 ，规则消失）
+	public void publishNewCachedRuleEvent() {
+
+	}
+
+	// 规则已持久化事件（应用关闭，规则在应用重启时会重建）
+	public void publishNewPersistedRuleEvent() {
 
 	}
 }

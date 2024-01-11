@@ -11,6 +11,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
+// 演化成 businessRule 领域模型的builder
 public class RuleFactory {
 
 	public static JexlRule of(BusinessRule aRule) {
