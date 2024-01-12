@@ -1,6 +1,6 @@
 package org.example.port.adapter.web;
 
-import org.example.domain.services.DefaultRulesEngine;
+import org.example.domain.services.RulesEngineService;
 import org.jeasy.rules.api.Rule;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,22 +10,22 @@ import java.util.Map;
 @RequestMapping("/rule")
 class RuleController {
 
-	private final DefaultRulesEngine defaultRulesEngine;
+	private final RulesEngineService rulesEngineService;
 
-	public RuleController(DefaultRulesEngine defaultRulesEngine) {
-		this.defaultRulesEngine = defaultRulesEngine;
+	public RuleController(RulesEngineService rulesEngineService) {
+		this.rulesEngineService = rulesEngineService;
 	}
 
 	@GetMapping("/{name}")
 	public Map<Rule, Boolean> checkOne(
 		@PathVariable String name,
 		@RequestParam Map<String, Object> context) {
-		return defaultRulesEngine.checkOne(name, context);
+		return rulesEngineService.checkOne(name, context);
 	}
 
 	@GetMapping()
 	public Map<Rule, Boolean> checkAll(@RequestParam Map<String, Object> context) {
-		return defaultRulesEngine.checkAll(context);
+		return rulesEngineService.checkAll(context);
 	}
 
 }

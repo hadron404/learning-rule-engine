@@ -1,6 +1,8 @@
 package org.example.port.adapter.web;
 
 import org.example.domain.model.rule.BusinessRule;
+import org.example.domain.model.rule.BusinessRuleId;
+import org.example.port.adapter.event.RuleCachingEvent;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,10 +31,10 @@ class CacheRuleController {
 	 */
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
 	public void create(@RequestBody Map<String, String> param) {
-		String name = param.get("name");
-		String desc = param.get("desc");
-		String condition = param.get("condition");
 		BusinessRule rule = new BusinessRule();
-		applicationEventPublisher.publishEvent(rule.cachingEvent());
+		rule.setName(new BusinessRuleId(param.get("name")));
+		rule.setDescription(param.get("desc"));
+		rule.setCondition(param.get("condition"));
+		applicationEventPublisher.publishEvent(new RuleCachingEvent<>(rule));
 	}
 }

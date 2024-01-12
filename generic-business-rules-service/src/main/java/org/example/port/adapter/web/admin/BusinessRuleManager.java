@@ -2,7 +2,10 @@ package org.example.port.adapter.web.admin;
 
 import org.example.domain.model.rule.BusinessRule;
 import org.example.domain.model.rule.BusinessRuleRepository;
+import org.example.port.adapter.event.RulePersistedEvent;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,8 +23,9 @@ class BusinessRuleManager {
 		this.applicationEventPublisher = applicationEventPublisher;
 	}
 
-	public void save(BusinessRule businessRule) {
+	@PostMapping
+	public void save(@RequestBody BusinessRule businessRule) {
 		businessRuleRepository.save(businessRule);
-		applicationEventPublisher.publishEvent(businessRule.persistedEvent(null));
+		applicationEventPublisher.publishEvent(new RulePersistedEvent(null));
 	}
 }

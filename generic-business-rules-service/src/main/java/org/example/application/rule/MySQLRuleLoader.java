@@ -24,8 +24,8 @@ class MySQLRuleLoader extends AbstractRuleLoader {
 	@Override
 	public void load() {
 		List<BusinessRule> rules =  businessRuleRepository.findAllRules();
-		rules.forEach(i -> AbstractRuleLoader.load(i.toJexlRule()));
-		System.out.printf("从MySQL里已缓存%s条规则，当前共%s条规则%n%n", rules.size(), AbstractRuleLoader.size());
+		rules.forEach(AbstractRuleLoader::load);
+		System.out.printf("从MySQL里已缓存[ %s ]条规则，当前共[ %s ]条规则%n%n", rules.size(), AbstractRuleLoader.size());
 	}
 
 	@EventListener(RulePersistedEvent.class)

@@ -2,7 +2,7 @@ package org.example.port.adapter.web.user;
 
 import org.example.domain.model.rule.BusinessRule;
 import org.example.port.adapter.factory.RuleFactory;
-import org.example.domain.services.DefaultRulesEngine;
+import org.example.domain.services.RulesEngineService;
 import org.jeasy.rules.api.Rule;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,10 +15,10 @@ import java.util.stream.Collectors;
 @RestController()
 @RequestMapping("/rule/sample")
 class SampleRuleController {
-	private final DefaultRulesEngine defaultRulesEngine;
+	private final RulesEngineService rulesEngineService;
 
-	public SampleRuleController(DefaultRulesEngine defaultRulesEngine) {
-		this.defaultRulesEngine = defaultRulesEngine;
+	public SampleRuleController(RulesEngineService rulesEngineService) {
+		this.rulesEngineService = rulesEngineService;
 	}
 
 	/**
@@ -28,7 +28,7 @@ class SampleRuleController {
 	public String checkOneWithWarning(
 		@PathVariable String name,
 		@RequestBody Map<String, Object> context) {
-		Map<Rule, Boolean> result = defaultRulesEngine.checkOne(name, context);
+		Map<Rule, Boolean> result = rulesEngineService.checkOne(name, context);
 		return result.entrySet()
 			.stream()
 			.filter(Map.Entry::getValue)
