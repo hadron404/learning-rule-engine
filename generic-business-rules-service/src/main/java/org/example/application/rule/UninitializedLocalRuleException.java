@@ -1,4 +1,4 @@
-package org.example.services.rule;
+package org.example.application.rule;
 
 class UninitializedLocalRuleException extends NullPointerException {
 

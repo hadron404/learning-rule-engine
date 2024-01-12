@@ -1,8 +1,8 @@
-package org.example.application;
+package org.example.port.adapter.web.user;
 
 import org.example.domain.model.rule.BusinessRule;
 import org.example.port.adapter.factory.RuleFactory;
-import org.example.services.DefaultRulesEngine;
+import org.example.domain.services.DefaultRulesEngine;
 import org.jeasy.rules.api.Rule;
 import org.springframework.web.bind.annotation.*;
 

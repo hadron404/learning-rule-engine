@@ -1,4 +1,4 @@
-package org.example.application;
+package org.example.port.adapter.web;
 
 import org.example.domain.model.rule.BusinessRule;
 import org.springframework.context.ApplicationEventPublisher;

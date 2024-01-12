@@ -1,0 +1,13 @@
+== api
+
+== doc
+
+== src
+
+* `appliation.\*` 应用服务层， `*` 为可能的子应用服务
+* `domain.model` 领域模型层
+* `domain.service` 领域服务层
+* `port.adapter.web` 端口适配器架构-web
+* `port.adapter.event` 端口适配器架构-事件
+* `port.adapter.persistence` 端口适配器架构-持久化
+* `common.func` 公用函数

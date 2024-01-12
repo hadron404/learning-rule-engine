@@ -1,9 +1,9 @@
-package org.example.services.rule;
+package org.example.application.rule;
 
 import org.example.domain.model.rule.BusinessRule;
 import org.example.domain.model.rule.BusinessRuleRepository;
 import org.example.port.adapter.event.RulePersistedEvent;
-import org.example.services.AbstractRuleLoader;
+import org.example.application.AbstractRuleLoader;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 

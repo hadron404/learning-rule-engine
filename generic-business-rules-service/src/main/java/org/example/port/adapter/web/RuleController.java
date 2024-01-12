@@ -1,6 +1,6 @@
-package org.example.application;
+package org.example.port.adapter.web;
 
-import org.example.services.DefaultRulesEngine;
+import org.example.domain.services.DefaultRulesEngine;
 import org.jeasy.rules.api.Rule;
 import org.springframework.web.bind.annotation.*;
 

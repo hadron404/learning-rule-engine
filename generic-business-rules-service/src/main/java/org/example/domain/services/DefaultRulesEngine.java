@@ -1,5 +1,6 @@
-package org.example.services;
+package org.example.domain.services;
 
+import org.example.application.AbstractRuleLoader;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rule;
 import org.jeasy.rules.api.Rules;

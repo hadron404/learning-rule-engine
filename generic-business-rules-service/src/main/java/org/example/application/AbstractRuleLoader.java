@@ -1,8 +1,7 @@
-package org.example.services;
+package org.example.application;
 
 import jakarta.annotation.PostConstruct;
 import org.jeasy.rules.api.Rule;
-import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 import java.util.Map;
