@@ -36,9 +36,4 @@ public class DefaultRulesEngine {
 		context.forEach(facts::put);
 		return DEFAULT_RULES_ENGINE.check(rules, facts);
 	}
-
-	public static int getRuleCacheSize() {
-		return RULE_CACHE.size();
-	}
-
 }

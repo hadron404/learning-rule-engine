@@ -20,4 +20,8 @@ public abstract class AbstractRuleLoader {
 	private void init() {
 		this.load();
 	}
+
+	public static int size() {
+		return RULE_CACHE.size();
+	}
 }

@@ -1,6 +1,8 @@
 package org.example.domain.model.rule;
 
 import org.example.common.func.Functions;
+import org.example.port.adapter.event.RuleCachingEvent;
+import org.example.port.adapter.event.RulePersistedEvent;
 import org.example.port.adapter.factory.RuleFactory;
 import org.jeasy.rules.jexl.JexlRule;
 
@@ -70,13 +72,13 @@ public class BusinessRule {
 		this.warning = warning;
 	}
 
-	//  规则已缓存事件（应用关闭 ，规则消失）
-	public void publishNewCachedRuleEvent() {
-
+	// 规则已缓存事件（应用关闭 ，规则消失）
+	public RuleCachingEvent<BusinessRule> cachingEvent() {
+		return new RuleCachingEvent<>(this);
 	}
 
 	// 规则已持久化事件（应用关闭，规则在应用重启时会重建）
-	public void publishNewPersistedRuleEvent() {
-
+	public RulePersistedEvent persistedEvent(Long ruleId) {
+		return new RulePersistedEvent(this);
 	}
 }

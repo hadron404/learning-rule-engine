@@ -1,6 +1,7 @@
 package org.example.application;
 
 import org.example.domain.model.rule.BusinessRule;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,13 @@ import java.util.Map;
 @RestController()
 @RequestMapping("/temp/rule")
 class CacheRuleController {
+
+	private final ApplicationEventPublisher applicationEventPublisher;
+
+	public CacheRuleController(ApplicationEventPublisher applicationEventPublisher) {
+		this.applicationEventPublisher = applicationEventPublisher;
+	}
+
 	/**
 	 * 添加一个临时规则加入到正在运行的应用服务
 	 * 直到应用服务关闭，所有添加的临时规则就会消失
@@ -25,6 +33,6 @@ class CacheRuleController {
 		String desc = param.get("desc");
 		String condition = param.get("condition");
 		BusinessRule rule = new BusinessRule();
-		rule.publishNewCachedRuleEvent();
+		applicationEventPublisher.publishEvent(rule.cachingEvent());
 	}
 }
