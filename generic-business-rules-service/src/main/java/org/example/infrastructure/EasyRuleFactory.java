@@ -1,10 +1,9 @@
-package org.example.port.adapter.factory;
+package org.example.infrastructure;
 
 import org.apache.commons.jexl3.JexlBuilder;
 import org.apache.commons.jexl3.JexlEngine;
 import org.example.common.func.Functions;
 import org.example.domain.model.rule.BusinessRule;
-import org.jeasy.rules.api.Rule;
 import org.jeasy.rules.jexl.JexlRule;
 
 import java.util.LinkedHashMap;
@@ -12,16 +11,14 @@ import java.util.Map;
 import java.util.Set;
 
 // 演化成 businessRule 领域模型的builder
-public class RuleFactory {
-
-	public static JexlRule of(BusinessRule aRule) {
-		return RuleFactory.getRule(
-			aRule.functions(), aRule.name().value(), aRule.description(),
-			aRule.priority(), aRule.condition());
+public class EasyRuleFactory {
+	private EasyRuleFactory() {
 	}
 
-	public static BusinessRule of(Rule rule) {
-		return new BusinessRule();
+	public static JexlRule of(BusinessRule aRule) {
+		return EasyRuleFactory.getRule(
+			aRule.functions(), aRule.name().value(), aRule.description(),
+			aRule.priority(), aRule.condition());
 	}
 
 	private static JexlRule getRule(

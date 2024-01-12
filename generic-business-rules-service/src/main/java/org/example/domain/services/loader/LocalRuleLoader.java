@@ -1,8 +1,9 @@
-package org.example.application.rule;
+package org.example.domain.services.loader;
 
-import org.example.application.AbstractRuleLoader;
 import org.example.domain.model.rule.BusinessRule;
-import org.example.port.adapter.event.RuleCachingEvent;
+import org.example.domain.model.rule.LocalRules;
+import org.example.domain.model.rule.event.RuleCachingEvent;
+import org.example.infrastructure.AbstractRuleLoader;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 

@@ -1,22 +1,24 @@
-package org.example.domain.services;
+package org.example.infrastructure;
 
-import org.example.application.AbstractRuleLoader;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rule;
 import org.jeasy.rules.api.Rules;
 import org.jeasy.rules.api.RulesEngine;
-import org.jeasy.rules.core.DefaultRulesEngine;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
 /**
- * 使用默认规则引擎的规则引擎服务
+ * 基于easy-rule规则引擎
  */
-@Service
-public class RulesEngineService {
+@Component
+public class EasyRuleEngine {
 
-	private static final RulesEngine DEFAULT_RULES_ENGINE = new DefaultRulesEngine();
+	private final RulesEngine rulesEngine;
+
+	public EasyRuleEngine(RulesEngine rulesEngine) {
+		this.rulesEngine = rulesEngine;
+	}
 
 	public Map<Rule, Boolean> checkOne(String name, Map<String, Object> context) {
 		Rules rules = new Rules();
@@ -26,7 +28,7 @@ public class RulesEngineService {
 		rules.register(AbstractRuleLoader.RULE_CACHE.get(name));
 		Facts facts = new Facts();
 		context.forEach(facts::put);
-		return DEFAULT_RULES_ENGINE.check(rules, facts);
+		return rulesEngine.check(rules, facts);
 	}
 
 	public Map<Rule, Boolean> checkAll(Map<String, Object> context) {
@@ -34,6 +36,12 @@ public class RulesEngineService {
 		AbstractRuleLoader.RULE_CACHE.forEach((k, v) -> rules.register(v));
 		Facts facts = new Facts();
 		context.forEach(facts::put);
-		return DEFAULT_RULES_ENGINE.check(rules, facts);
+		return rulesEngine.check(rules, facts);
+	}
+
+	static class UnknownRuleException extends IllegalArgumentException {
+		public UnknownRuleException(String s) {
+			super("未知的规则：" + s);
+		}
 	}
 }

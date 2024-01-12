@@ -1,8 +1,7 @@
-package org.example.application;
+package org.example.infrastructure;
 
 import jakarta.annotation.PostConstruct;
 import org.example.domain.model.rule.BusinessRule;
-import org.example.port.adapter.factory.RuleFactory;
 import org.jeasy.rules.api.Rule;
 
 import java.util.HashMap;
@@ -13,7 +12,7 @@ public abstract class AbstractRuleLoader {
 
 	public static final Map<String, Rule> RULE_CACHE = new HashMap<>();
 	protected static void load(BusinessRule rule) {
-		RULE_CACHE.put(rule.name().value(), RuleFactory.of(rule));
+		RULE_CACHE.put(rule.name().value(), rule.toJexlRule());
 	}
 	public abstract void load();
 

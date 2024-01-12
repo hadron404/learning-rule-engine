@@ -1,4 +1,4 @@
-package org.example.port.adapter.event;
+package org.example.domain.model.rule.event;
 
 
 /**

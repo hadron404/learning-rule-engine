@@ -9,19 +9,19 @@ import java.util.List;
 @Repository
 public class BusinessRuleRepo implements BusinessRuleRepository {
 
-	private final BusinessRuleJPARepository businessRuleJPARepository;
+	private final BusinessRuleEntityJPARepository businessRuleEntityJPARepository;
 
-	BusinessRuleRepo(BusinessRuleJPARepository businessRuleJPARepository) {
-		this.businessRuleJPARepository = businessRuleJPARepository;
+	BusinessRuleRepo(BusinessRuleEntityJPARepository businessRuleEntityJPARepository) {
+		this.businessRuleEntityJPARepository = businessRuleEntityJPARepository;
 	}
 
 	@Override
 	public List<BusinessRule> findAllRules() {
-		return BusinessRuleFactory.entitiesToDomainModels(businessRuleJPARepository.findAll()).toList();
+		return BusinessRuleFactory.entitiesToDomainModels(businessRuleEntityJPARepository.findAll()).toList();
 	}
 
 	@Override
 	public void save(BusinessRule businessRule) {
-		businessRuleJPARepository.save(BusinessEntityFactory.domainModelToEntity(businessRule));
+		businessRuleEntityJPARepository.save(BusinessEntityFactory.domainModelToEntity(businessRule));
 	}
 }

@@ -1,6 +1,11 @@
 package org.example.domain.model.rule;
 
 import org.example.common.func.Functions;
+import org.example.domain.model.rule.event.RuleCachingEvent;
+import org.example.domain.model.rule.event.RulePersistedEvent;
+import org.example.domain.services.DomainRegistry;
+import org.example.infrastructure.EasyRuleFactory;
+import org.jeasy.rules.jexl.JexlRule;
 
 import java.util.Set;
 
@@ -62,6 +67,19 @@ public class BusinessRule {
 
 	public void setWarning(String warning) {
 		this.warning = warning;
+	}
+
+	public JexlRule toJexlRule() {
+		return EasyRuleFactory.of(this);
+	}
+
+	public void persistence() {
+		DomainRegistry.businessRuleRepository().save(this);
+		DomainRegistry.applicationEventPublisher().publishEvent(new RulePersistedEvent(null));
+	}
+
+	public void memoization() {
+		DomainRegistry.applicationEventPublisher().publishEvent(new RuleCachingEvent<>(this));
 	}
 
 }

@@ -12,7 +12,7 @@ import java.util.List;
 class BusinessRuleEntityJPARepositoryTest {
 
 	@Resource
-	private BusinessRuleJPARepository businessRuleJPARepository;
+	private BusinessRuleEntityJPARepository businessRuleEntityJPARepository;
 
 	@Test
 	@Transactional
@@ -24,8 +24,8 @@ class BusinessRuleEntityJPARepositoryTest {
 		businessRuleEntity.setFunctions("12312");
 		businessRuleEntity.setPriority(1);
 		businessRuleEntity.setWarning("黑名单警告");
-		businessRuleJPARepository.save(businessRuleEntity);
-		List<BusinessRuleEntity> result = businessRuleJPARepository.findAll();
+		businessRuleEntityJPARepository.save(businessRuleEntity);
+		List<BusinessRuleEntity> result = businessRuleEntityJPARepository.findAll();
 		System.out.println(result);
 		Assertions.assertEquals(1, result.size());
 	}

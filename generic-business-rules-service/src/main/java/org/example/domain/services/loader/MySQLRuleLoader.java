@@ -1,9 +1,9 @@
-package org.example.application.rule;
+package org.example.domain.services.loader;
 
 import org.example.domain.model.rule.BusinessRule;
 import org.example.domain.model.rule.BusinessRuleRepository;
-import org.example.port.adapter.event.RulePersistedEvent;
-import org.example.application.AbstractRuleLoader;
+import org.example.infrastructure.AbstractRuleLoader;
+import org.example.domain.model.rule.event.RulePersistedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +23,7 @@ class MySQLRuleLoader extends AbstractRuleLoader {
 
 	@Override
 	public void load() {
-		List<BusinessRule> rules =  businessRuleRepository.findAllRules();
+		List<BusinessRule> rules = businessRuleRepository.findAllRules();
 		rules.forEach(AbstractRuleLoader::load);
 		System.out.printf("从MySQL里已缓存[ %s ]条规则，当前共[ %s ]条规则%n%n", rules.size(), AbstractRuleLoader.size());
 	}
