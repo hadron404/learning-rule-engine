@@ -1,5 +1,6 @@
 package org.example.infrastructure;
 
+import jakarta.annotation.Nonnull;
 import org.apache.commons.jexl3.JexlBuilder;
 import org.apache.commons.jexl3.JexlEngine;
 import org.example.common.func.Functions;
@@ -22,8 +23,8 @@ public class EasyRuleFactory {
 	}
 
 	private static JexlRule getRule(
-		Set<Functions> functions, String name, String description,
-		int priority, String condition) {
+		@Nonnull Set<Functions> functions, @Nonnull String name,
+		String description, int priority, String condition) {
 		JexlBuilder jexlBuilder = new JexlBuilder();
 		Map<String, Object> func = new LinkedHashMap<>();
 		functions.forEach(i -> func.put(i.key(), i));

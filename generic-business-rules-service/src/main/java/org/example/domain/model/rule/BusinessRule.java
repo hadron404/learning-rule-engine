@@ -75,11 +75,11 @@ public class BusinessRule {
 
 	public void persistence() {
 		DomainRegistry.businessRuleRepository().save(this);
-		DomainRegistry.applicationEventPublisher().publishEvent(new RulePersistedEvent(null));
+		DomainRegistry.APPLICATION_EVENT_PUBLISHER.publishEvent(new RulePersistedEvent(null));
 	}
 
 	public void memoization() {
-		DomainRegistry.applicationEventPublisher().publishEvent(new RuleCachingEvent<>(this));
+		DomainRegistry.APPLICATION_EVENT_PUBLISHER.publishEvent(new RuleCachingEvent<>(this));
 	}
 
 }
