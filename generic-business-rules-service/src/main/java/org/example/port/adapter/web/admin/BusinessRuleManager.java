@@ -1,8 +1,8 @@
 package org.example.port.adapter.web.admin;
 
-import org.example.application.rule.SaveRuleCommand;
+import org.example.application.rule.media.RequestBusinessRuleCommand;
+import org.example.domain.model.rule.BusinessRule;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 class BusinessRuleManager {
 
 	@PostMapping
-	public void save(@RequestBody SaveRuleCommand command) {
-		command.toBusinessRule().persistence();
+	public void save(@RequestBusinessRuleCommand BusinessRule rule) {
+		rule.persistence();
 	}
 }
