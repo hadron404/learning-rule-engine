@@ -45,6 +45,10 @@ public class BusinessRule {
 		return warning;
 	}
 
+	public void setName(String name) {
+		this.name = new BusinessRuleId(name);
+	}
+
 	public void setName(BusinessRuleId name) {
 		this.name = name;
 	}
