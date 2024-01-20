@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Set;
 
 @Configuration
-public class AddNewArgumentResolverConfiguration implements WebMvcConfigurer {
+class RequestBusinessRuleCommandResolverConfiguration implements WebMvcConfigurer {
 
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
@@ -42,7 +42,7 @@ public class AddNewArgumentResolverConfiguration implements WebMvcConfigurer {
 		public Object resolveArgument(@Nonnull MethodParameter parameter, ModelAndViewContainer mavContainer,
 			NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
 			HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
-            assert request != null;
+			assert request != null;
 			String jsonStrFromBody = StreamUtils.copyToString(request.getInputStream(), Charset.defaultCharset());
 			return toBusinessRule(jsonStrFromBody);
 		}
