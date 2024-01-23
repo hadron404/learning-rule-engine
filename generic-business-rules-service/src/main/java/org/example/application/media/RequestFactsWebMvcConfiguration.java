@@ -21,20 +21,20 @@ import java.util.List;
 import java.util.Map;
 
 @Configuration
-class RequestFactsWevMvcConfiguration implements WebMvcConfigurer {
+class RequestFactsWebMvcConfiguration implements WebMvcConfigurer {
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
-		registry.addConverter(new RequestFactsConverter());
+		registry.addConverter(new RequestFactsJsonStringConverter());
 		WebMvcConfigurer.super.addFormatters(registry);
 	}
 
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-		resolvers.add(new RequestFactsWevMvcConfiguration.ContextCommandHandlerMethodArgumentResolver());
+		resolvers.add(new RequestFactsMethodArgumentResolver());
 		WebMvcConfigurer.super.addArgumentResolvers(resolvers);
 	}
 
-	static class ContextCommandHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
+	static class RequestFactsMethodArgumentResolver implements HandlerMethodArgumentResolver {
 		@Override
 		public boolean supportsParameter(MethodParameter parameter) {
 			return parameter.hasParameterAnnotation(RequestFacts.class);
@@ -53,8 +53,7 @@ class RequestFactsWevMvcConfiguration implements WebMvcConfigurer {
 		}
 	}
 
-	// @Component
-	public static class RequestFactsConverter implements Converter<String, Facts> {
+	public static class RequestFactsJsonStringConverter implements Converter<String, Facts> {
 		@Override
 		public Facts convert(@Nonnull String value) {
 			try {
