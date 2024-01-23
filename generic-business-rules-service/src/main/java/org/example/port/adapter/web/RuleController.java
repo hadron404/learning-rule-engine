@@ -1,6 +1,6 @@
 package org.example.port.adapter.web;
 
-import org.example.application.media.RequestContextCommand;
+import org.example.application.media.RequestFacts;
 import org.example.infrastructure.EasyRuleEngine;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rule;
@@ -21,7 +21,7 @@ class RuleController {
 	@GetMapping("/{name}")
 	public Map<Rule, Boolean> checkOne(
 		@PathVariable String name,
-		@RequestContextCommand Facts facts) {
+		@RequestFacts Facts facts) {
 		// return easyRuleEngine.checkOne(name, context);
 		return Map.of();
 	}

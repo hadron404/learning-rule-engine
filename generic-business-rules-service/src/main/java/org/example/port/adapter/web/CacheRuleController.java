@@ -1,6 +1,5 @@
 package org.example.port.adapter.web;
 
-import org.example.application.rule.media.RequestBusinessRuleCommand;
 import org.example.domain.model.rule.BusinessRule;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;

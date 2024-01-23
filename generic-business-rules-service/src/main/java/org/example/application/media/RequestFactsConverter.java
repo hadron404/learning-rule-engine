@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import java.util.Map;
 
 @Component
-public class RequestContextCommandConverter implements Converter<String, Facts> {
+public class RequestFactsConverter implements Converter<String, Facts> {
 	@Override
 	public Facts convert(@Nonnull String value) {
 		try {

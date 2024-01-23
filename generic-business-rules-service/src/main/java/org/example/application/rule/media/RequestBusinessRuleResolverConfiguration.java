@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Set;
 
 @Configuration
-class RequestBusinessRuleCommandResolverConfiguration implements WebMvcConfigurer {
+class RequestBusinessRuleResolverConfiguration implements WebMvcConfigurer {
 
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
@@ -35,7 +35,7 @@ class RequestBusinessRuleCommandResolverConfiguration implements WebMvcConfigure
 
 		@Override
 		public boolean supportsParameter(MethodParameter parameter) {
-			return parameter.hasParameterAnnotation(RequestBusinessRuleCommand.class);
+			return parameter.hasParameterAnnotation(RequestBusinessRule.class);
 		}
 
 		@Override
