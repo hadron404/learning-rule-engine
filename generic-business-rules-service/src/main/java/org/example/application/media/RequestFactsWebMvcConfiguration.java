@@ -22,9 +22,12 @@ import java.util.Map;
 
 @Configuration
 class RequestFactsWebMvcConfiguration implements WebMvcConfigurer {
+
+	private static final JsonStringToFactsConverter JSON_STRING_TO_FACTS_CONVERTER = new JsonStringToFactsConverter();
+
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
-		registry.addConverter(new RequestFactsJsonStringConverter());
+		registry.addConverter(JSON_STRING_TO_FACTS_CONVERTER);
 		WebMvcConfigurer.super.addFormatters(registry);
 	}
 
@@ -41,19 +44,18 @@ class RequestFactsWebMvcConfiguration implements WebMvcConfigurer {
 		}
 
 		@Override
-		public Object resolveArgument(@Nonnull MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
+		public Object resolveArgument(@Nonnull MethodParameter parameter, ModelAndViewContainer mavContainer,
+			NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
 			HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
 			assert request != null;
-			// System.out.println(URLDecoder.decode(request.getQueryString()));
-			System.out.println(request.getParameterMap().toString());
-			// JsonNode jsonNode = InitializationBeanConfiguration.objectMapper()
-			// 	.readTree(Base64.getDecoder().decode(request.getQueryString()));
-
-			return null;
+			String json = InitializationBeanConfiguration.objectMapper().writeValueAsString(webRequest.getParameterMap());
+			System.out.println(request.getQueryString());
+			// c=1&c=2&b=1&d=1298719&e=周强 此类字符串直接解析成Facts类
+			return JSON_STRING_TO_FACTS_CONVERTER.convert(json);
 		}
 	}
 
-	public static class RequestFactsJsonStringConverter implements Converter<String, Facts> {
+	static class JsonStringToFactsConverter implements Converter<String, Facts> {
 		@Override
 		public Facts convert(@Nonnull String value) {
 			try {

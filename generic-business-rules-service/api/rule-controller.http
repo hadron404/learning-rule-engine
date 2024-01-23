@@ -21,7 +21,7 @@ GET {{prefix}}{{ip}}:{{port}}/rule/自定义规则5?c=abs
 GET {{prefix}}{{ip}}:{{port}}/rule/规则3?c=1,2
 
 ### 使用集合规则
-GET {{prefix}}{{ip}}:{{port}}/rule/规则3?c=1&c=2
+GET {{prefix}}{{ip}}:{{port}}/rule/规则3?a=1.1&c=1&c=2&b=1&d=1298719&e=周强&f=true&g=&h=null
 
 
 ### 使用集合规则
