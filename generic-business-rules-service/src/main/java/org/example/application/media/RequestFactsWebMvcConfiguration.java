@@ -7,9 +7,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import org.example.infrastructure.InitializationBeanConfiguration;
 import org.jeasy.rules.api.Fact;
 import org.jeasy.rules.api.Facts;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.MethodParameter;
-import org.springframework.core.convert.converter.Converter;
+import org.springframework.core.convert.ConversionService;
+import org.springframework.format.Formatter;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
@@ -17,27 +19,38 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.text.ParseException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 @Configuration
 class RequestFactsWebMvcConfiguration implements WebMvcConfigurer {
 
-	private static final JsonStringToFactsConverter JSON_STRING_TO_FACTS_CONVERTER = new JsonStringToFactsConverter();
+	@Autowired
+	private ConversionService conversionService;
+
 
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
-		registry.addConverter(JSON_STRING_TO_FACTS_CONVERTER);
+		registry.addFormatter(new JsonStyleFactsFormatter());
 		WebMvcConfigurer.super.addFormatters(registry);
 	}
 
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-		resolvers.add(new RequestFactsMethodArgumentResolver());
+		resolvers.add(new RequestFactsMethodArgumentResolver(conversionService));
 		WebMvcConfigurer.super.addArgumentResolvers(resolvers);
 	}
 
 	static class RequestFactsMethodArgumentResolver implements HandlerMethodArgumentResolver {
+
+		private final ConversionService conversionService;
+
+		public RequestFactsMethodArgumentResolver(ConversionService conversionService) {
+			this.conversionService = conversionService;
+		}
+
 		@Override
 		public boolean supportsParameter(MethodParameter parameter) {
 			return parameter.hasParameterAnnotation(RequestFacts.class);
@@ -48,25 +61,58 @@ class RequestFactsWebMvcConfiguration implements WebMvcConfigurer {
 			NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
 			HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
 			assert request != null;
-			String json = InitializationBeanConfiguration.objectMapper().writeValueAsString(webRequest.getParameterMap());
-			System.out.println(request.getQueryString());
-			// c=1&c=2&b=1&d=1298719&e=周强 此类字符串直接解析成Facts类
-			return JSON_STRING_TO_FACTS_CONVERTER.convert(json);
+			Facts facts = new Facts();
+			request.getParameterMap()
+				.forEach((k, v) -> {
+					if (v.length == 1) {
+						conversionService.canConvert(String.class, Integer.class);
+						conversionService.canConvert(String.class, Long.class);
+						conversionService.canConvert(String.class, Double.class);
+						facts.add(new Fact<>(k, v[0]));
+					}
+					conversionService.canConvert(String.class, List.class);
+				});
+
+			return new RequestQueryStyleFactsFormatter().parse(request.getQueryString(), Locale.CHINA);
 		}
 	}
 
-	static class JsonStringToFactsConverter implements Converter<String, Facts> {
+	static class RequestQueryStyleFactsFormatter implements Formatter<Facts> {
 		@Override
-		public Facts convert(@Nonnull String value) {
+		public @Nonnull Facts parse(@Nonnull String text, @Nonnull Locale locale) throws ParseException {
+			Facts result = new Facts();
+
+
+			return result;
+		}
+
+		@Override
+		public @Nonnull String print(Facts object, @Nonnull Locale locale) {
+			return null;
+		}
+	}
+
+	static class JsonStyleFactsFormatter implements Formatter<Facts> {
+		@Override
+		public @Nonnull Facts parse(@Nonnull String text, @Nonnull Locale locale) throws ParseException {
 			try {
 				Facts facts = new Facts();
 				Map<String, ?> result = InitializationBeanConfiguration.objectMapper()
-					.readValue(value, new TypeReference<>() {
+					.readValue(text, new TypeReference<>() {
 					});
 				result.entrySet().stream()
 					.map(i -> new Fact<>(i.getKey(), i.getValue()))
 					.forEach(facts::add);
 				return facts;
+			} catch (JsonProcessingException e) {
+				throw new ParseException(text, e.getLocation().getLineNr());
+			}
+		}
+
+		@Override
+		public @Nonnull String print(Facts object, @Nonnull Locale locale) {
+			try {
+				return InitializationBeanConfiguration.objectMapper().writeValueAsString(object.asMap());
 			} catch (JsonProcessingException e) {
 				throw new RuntimeException(e);
 			}
