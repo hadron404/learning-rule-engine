@@ -70,8 +70,8 @@ class RequestFactsWebMvcConfiguration implements WebMvcConfigurer {
 		private final LinkedHashSet<Class<?>> DEFAULT_SUPPORT_CONVERT_TYPES = new LinkedHashSet<>() {
 			{
 				add(Boolean.class);
-				add(Double.class);
-				add(Integer.class);
+				// add(Double.class);
+				// add(Integer.class);
 				add(String.class);
 			}
 		};

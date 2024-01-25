@@ -2,7 +2,7 @@ package org.example;
 
 import org.apache.commons.jexl3.JexlBuilder;
 import org.apache.commons.jexl3.JexlEngine;
-import org.example.jexl.func.diyFunctions;
+import org.example.jexl.func.Functions;
 import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rule;
 import org.jeasy.rules.api.Rules;
@@ -28,7 +28,7 @@ class UseJexlTest {
 			.name("myRule")
 			.description("myRuleDescription")
 			.priority(3)
-			.when("lhs == 1");
+			.when("customerId =~ ['10053'] and fn:execute(orderGoodsCategoryIds,'240') ");
 		rules.register(rule);
 		facts.put("lhs", 1);
 		rulesEngine.check(rules, facts);
@@ -108,7 +108,7 @@ class UseJexlTest {
 		JexlBuilder jexlBuilder = new JexlBuilder();
 		// 2、用户自定义函数（调用方式--》函数名:方法名）
 		Map<String, Object> func = new LinkedHashMap<>();
-		func.put("fn", new diyFunctions());
+		func.put("fn", Functions.INTERSECTION);
 		jexlBuilder.namespaces(func);
 		JexlEngine jexl = jexlBuilder.create();
 		Rule rule = new JexlRule(jexl)
@@ -116,9 +116,10 @@ class UseJexlTest {
 			.description("myRuleDescription")
 			.priority(3)
 			// 属于数组中的任意一个
-			.when("fn:nonDisjoint(lhs,'a','b','c')");
+			.when("customerId =~ ['10053'] and fn:execute(orderGoodsCategoryIds,'240')");
 		rules.register(rule);
-		facts.put("lhs", List.of("f", "v", "c"));
+		facts.put("customerId","10053");
+		facts.put("orderGoodsCategoryIds", List.of("240"));
 		rulesEngine.check(rules, facts);
 		Assertions.assertTrue(rulesEngine.check(rules, facts).get(rule));
 	}

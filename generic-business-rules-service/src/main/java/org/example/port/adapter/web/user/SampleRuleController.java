@@ -1,8 +1,10 @@
 package org.example.port.adapter.web.user;
 
+import org.example.application.media.RequestFacts;
 import org.example.domain.model.rule.BusinessRule;
 import org.example.domain.model.rule.BusinessRuleFactory;
 import org.example.infrastructure.EasyRuleEngine;
+import org.jeasy.rules.api.Facts;
 import org.jeasy.rules.api.Rule;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,11 +26,11 @@ class SampleRuleController {
 	/**
 	 * 对应用服务中的本地缓存规则选择一个校验，并且返回特定警告信息
 	 */
-	@PostMapping("/{name}/warning")
+	@GetMapping("/{name}/warning")
 	public String checkOneWithWarning(
 		@PathVariable String name,
-		@RequestBody Map<String, Object> context) {
-		Map<Rule, Boolean> result = easyRuleEngine.checkOne(name, context);
+		@RequestFacts Facts facts) {
+		Map<Rule, Boolean> result = easyRuleEngine.checkOne(name, facts);
 		return result.entrySet()
 			.stream()
 			.filter(Map.Entry::getValue)

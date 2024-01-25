@@ -1,9 +1,8 @@
-package org.example.common.func;
+package org.example.jexl.func;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 
 /**
  * 通用函数枚举类
@@ -19,11 +18,6 @@ public enum Functions {
 		}
 
 		@Override
-		public boolean execute(Object lhs, Object... rhs) {
-			return execute(List.of(lhs), rhs);
-		}
-
-		@Override
 		public String key() {
 			return "fn";
 		}
@@ -32,11 +26,6 @@ public enum Functions {
 
 	@SuppressWarnings("unused")
 	public boolean execute(Collection<?> lhs, Object... rhs) {
-		return false;
-	}
-
-	@SuppressWarnings("unused")
-	public boolean execute(Object lhs, Object... rhs) {
 		return false;
 	}
 

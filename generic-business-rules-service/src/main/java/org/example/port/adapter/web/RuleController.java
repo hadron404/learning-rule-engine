@@ -22,14 +22,12 @@ class RuleController {
 	public Map<Rule, Boolean> checkOne(
 		@PathVariable String name,
 		@RequestFacts Facts facts) {
-		// return easyRuleEngine.checkOne(name, context);
-		return Map.of();
+		return easyRuleEngine.checkOne(name, facts);
 	}
 
 	@GetMapping()
 	public Map<Rule, Boolean> checkAll(@RequestParam Facts facts) {
-		// return easyRuleEngine.checkAll(context);
-		return Map.of();
+		return easyRuleEngine.checkAll(facts);
 	}
 
 }

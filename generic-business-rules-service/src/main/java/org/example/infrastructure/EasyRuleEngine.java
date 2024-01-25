@@ -20,22 +20,19 @@ public class EasyRuleEngine {
 		this.rulesEngine = rulesEngine;
 	}
 
-	public Map<Rule, Boolean> checkOne(String name, Map<String, Object> context) {
+	public Map<Rule, Boolean> checkOne(String name, Facts facts) {
 		Rules rules = new Rules();
-		if (AbstractRuleLoader.RULE_CACHE.get(name) == null) {
+		Rule rule = AbstractRuleLoader.RULE_CACHE.get(name);
+		if (rule == null) {
 			throw new UnknownRuleException(name);
 		}
-		rules.register(AbstractRuleLoader.RULE_CACHE.get(name));
-		Facts facts = new Facts();
-		context.forEach(facts::put);
+		rules.register(rule);
 		return rulesEngine.check(rules, facts);
 	}
 
-	public Map<Rule, Boolean> checkAll(Map<String, Object> context) {
+	public Map<Rule, Boolean> checkAll(Facts facts) {
 		Rules rules = new Rules();
 		AbstractRuleLoader.RULE_CACHE.forEach((k, v) -> rules.register(v));
-		Facts facts = new Facts();
-		context.forEach(facts::put);
 		return rulesEngine.check(rules, facts);
 	}
 

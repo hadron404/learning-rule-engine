@@ -11,7 +11,7 @@ public enum LocalRules {
 		static final BusinessRule businessRule = new BusinessRule();
 		static {
 			businessRule.setDescription("旅游黑名单规则");
-			businessRule.setCondition("fn:execute(lhs,'a','b','c')");
+			businessRule.setCondition("customerId =~ ['10053'] and fn:execute(orderGoodsCategoryIds,'240')");
 			businessRule.setFunctions(Set.of(Functions.INTERSECTION));
 			businessRule.setWarning("当前客户为旅游黑名单客户，不可下单旅游产品，如有疑问请联系旅游部！");
 		}

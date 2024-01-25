@@ -24,6 +24,6 @@ class LocalRuleLoader extends AbstractRuleLoader {
 	@EventListener(RuleCachingEvent.class)
 	public void refreshCache(RuleCachingEvent<BusinessRule> event) {
 		AbstractRuleLoader.load(event.source());
-		System.out.printf("处理临时性规则添加时事件，添加[ %s ]规则，当前共[ %s ]条规则%n", event.source().name(), AbstractRuleLoader.size());
+		System.out.printf("处理临时性规则添加时事件，添加[ %s ]规则，当前共[ %s ]条规则%n", event.source().name().value(), AbstractRuleLoader.size());
 	}
 }

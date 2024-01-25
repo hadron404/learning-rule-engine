@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "name": "旅游黑名单规则",
-  "desc": "限制某些客户下单商品分类为线路游的商品",
+  "description": "限制某些客户下单商品分类为线路游的商品",
   "condition": "customerId =~ ['10053'] and fn:execute(orderGoodsCategoryIds,'240') ",
   "functions": [
     "INTERSECTION"
@@ -12,5 +12,5 @@ Content-Type: application/json
 }
 
 
-### 使用刚刚创建的旅游黑名单规则
-GET {{prefix}}{{ip}}:{{port}}/rule/旅游黑名单规则?customerId=10053&orderGoodsCategoryIds=150
+### 使用旅游黑名单规则
+GET {{prefix}}{{ip}}:{{port}}/rule/旅游黑名单规则?customerId=10053&orderGoodsCategoryIds=10
