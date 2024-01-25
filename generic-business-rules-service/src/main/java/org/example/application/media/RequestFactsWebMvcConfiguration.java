@@ -3,14 +3,15 @@ package org.example.application.media;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import jakarta.annotation.Nonnull;
-import jakarta.servlet.http.HttpServletRequest;
+import org.example.domain.services.DomainRegistry;
 import org.example.infrastructure.InitializationBeanConfiguration;
 import org.jeasy.rules.api.Fact;
 import org.jeasy.rules.api.Facts;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.MethodParameter;
+import org.springframework.core.convert.ConversionException;
 import org.springframework.core.convert.ConversionService;
+import org.springframework.core.convert.converter.Converter;
 import org.springframework.format.Formatter;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -20,16 +21,11 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.text.ParseException;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Configuration
 class RequestFactsWebMvcConfiguration implements WebMvcConfigurer {
-
-	@Autowired
-	private ConversionService conversionService;
-
 
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
@@ -39,17 +35,13 @@ class RequestFactsWebMvcConfiguration implements WebMvcConfigurer {
 
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
-		resolvers.add(new RequestFactsMethodArgumentResolver(conversionService));
+		resolvers.add(new RequestFactsMethodArgumentResolver());
 		WebMvcConfigurer.super.addArgumentResolvers(resolvers);
 	}
 
 	static class RequestFactsMethodArgumentResolver implements HandlerMethodArgumentResolver {
-
-		private final ConversionService conversionService;
-
-		public RequestFactsMethodArgumentResolver(ConversionService conversionService) {
-			this.conversionService = conversionService;
-		}
+		private final static ArrayStringMapToFactsConverter
+			ARRAY_STRING_MAP_TO_FACTS_CONVERTER = new ArrayStringMapToFactsConverter();
 
 		@Override
 		public boolean supportsParameter(MethodParameter parameter) {
@@ -58,37 +50,65 @@ class RequestFactsWebMvcConfiguration implements WebMvcConfigurer {
 
 		@Override
 		public Object resolveArgument(@Nonnull MethodParameter parameter, ModelAndViewContainer mavContainer,
-			NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-			HttpServletRequest request = webRequest.getNativeRequest(HttpServletRequest.class);
-			assert request != null;
-			Facts facts = new Facts();
-			request.getParameterMap()
-				.forEach((k, v) -> {
-					if (v.length == 1) {
-						conversionService.canConvert(String.class, Integer.class);
-						conversionService.canConvert(String.class, Long.class);
-						conversionService.canConvert(String.class, Double.class);
-						facts.add(new Fact<>(k, v[0]));
-					}
-					conversionService.canConvert(String.class, List.class);
-				});
-
-			return new RequestQueryStyleFactsFormatter().parse(request.getQueryString(), Locale.CHINA);
+			NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
+			return ARRAY_STRING_MAP_TO_FACTS_CONVERTER.convert(webRequest.getParameterMap());
 		}
 	}
 
-	static class RequestQueryStyleFactsFormatter implements Formatter<Facts> {
+	static class ArrayStringMapToFactsConverter implements Converter<Map<String, String[]>, Facts> {
+		private final ConversionService conversionService = DomainRegistry.conversionService();
+
 		@Override
-		public @Nonnull Facts parse(@Nonnull String text, @Nonnull Locale locale) throws ParseException {
+		public Facts convert(Map<String, String[]> source) {
 			Facts result = new Facts();
-
-
+			source.forEach((k, v) -> arrayStringToFact(v)
+				.ifPresent(i -> result.add(new Fact<>(k, i)))
+			);
 			return result;
 		}
 
-		@Override
-		public @Nonnull String print(Facts object, @Nonnull Locale locale) {
-			return null;
+		private final LinkedHashSet<Class<?>> DEFAULT_SUPPORT_CONVERT_TYPES = new LinkedHashSet<>() {
+			{
+				add(Boolean.class);
+				add(Double.class);
+				add(Integer.class);
+				add(String.class);
+			}
+		};
+
+		private Optional<?> arrayStringToFact(String[] str) {
+			if (str.length == 0) {
+				return Optional.empty();
+			}
+			if (str.length == 1) {
+				for (Class<?> type : DEFAULT_SUPPORT_CONVERT_TYPES) {
+					try {
+						return Optional.ofNullable(this.conversionService.convert(str[0], type));
+					} catch (ConversionException | IllegalArgumentException ignored) {
+					}
+				}
+			}
+			List<Class<?>> supportConvertTypes = Arrays.stream(str)
+				.map(i -> {
+					for (Class<?> type : DEFAULT_SUPPORT_CONVERT_TYPES) {
+						try {
+							this.conversionService.convert(i, type);
+							return type;
+						} catch (ConversionException | IllegalArgumentException ignored) {
+						}
+					}
+					return null;
+				})
+				.filter(Objects::nonNull)
+				.distinct()
+				.collect(Collectors.toList());
+			if (supportConvertTypes.isEmpty()) {
+				return Optional.empty();
+			}
+			Class<?> finalType = supportConvertTypes.size() == 1 ? supportConvertTypes.get(0) : String.class;
+			return Optional.of(Arrays.stream(str)
+				.map(i -> this.conversionService.convert(i, finalType))
+				.collect(Collectors.toList()));
 		}
 	}
 

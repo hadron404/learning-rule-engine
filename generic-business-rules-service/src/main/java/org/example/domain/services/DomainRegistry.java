@@ -6,6 +6,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.ApplicationEventPublisherAware;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 
@@ -30,5 +31,9 @@ public class DomainRegistry
 
 	public static BusinessRuleRepository businessRuleRepository() {
 		return applicationContext.getBean(BusinessRuleRepository.class);
+	}
+
+	public static ConversionService conversionService() {
+		return applicationContext.getBean(ConversionService.class);
 	}
 }

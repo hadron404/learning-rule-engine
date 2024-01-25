@@ -16,12 +16,12 @@ GET {{prefix}}{{ip}}:{{port}}/rule/自定义规则4?c=39
 ### 使用自定义规则
 GET {{prefix}}{{ip}}:{{port}}/rule/自定义规则5?c=abs
 
-# todo 使用get请求以及map来接收通用的参数（数字、字符串、集合等类型）
+# 使用get请求以及map来接收通用的参数（数字、字符串、集合等类型）
 ### 使用集合规则
 GET {{prefix}}{{ip}}:{{port}}/rule/规则3?c=1,2
 
 ### 使用集合规则
-GET {{prefix}}{{ip}}:{{port}}/rule/规则3?a=1.1&c=1&c=2&b=1&d=1298719&e=周强&f=true&g=&h=null
+GET {{prefix}}{{ip}}:{{port}}/rule/规则3?a=1.1&c=1&c=2&b=1&d=1298719&e=周强&f=true&g=&h=null&b=3,
 
 
 ### 使用集合规则
