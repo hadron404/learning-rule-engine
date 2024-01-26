@@ -9,6 +9,9 @@ apply(plugin = "io.spring.dependency-management")
 
 dependencies {
 
+//    retry 支持
+    implementation("org.springframework.retry:spring-retry")
+
 //    jpa 支持
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 //    mysql 支持

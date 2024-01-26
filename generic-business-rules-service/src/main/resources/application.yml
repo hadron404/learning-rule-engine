@@ -14,3 +14,6 @@ spring:
 #      mode: always
 #      data-locations: classpath:mysql/data-*.sql
 #      schema-locations: classpath:mysql/schema-*.sql
+logging:
+  level:
+    root: info
